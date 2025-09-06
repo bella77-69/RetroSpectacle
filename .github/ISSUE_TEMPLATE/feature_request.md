@@ -8,7 +8,7 @@ assignees: ""
 
 ## Description
 
-Describe the feature or improvement
+<!-- Describe the feature or improvement -->
 
 ## Acceptance Criteria
 
