@@ -1,9 +1,9 @@
 ---
-name: "Feature 🚀"
-description: Suggest a new feature or enhancement
+name: Feature 🚀
+about: Suggest a new feature or enhancement
 title: "[Feature] 🚀 "
-labels: [enhancement]
-assignees: ""
+labels: enhancement
+assignees: ''
 ---
 
 ## Description
