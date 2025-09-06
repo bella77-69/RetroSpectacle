@@ -1,10 +1,9 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
+name: "Feature 🚀"
+description: Suggest a new feature or enhancement
+title: "[Feature] 🚀 "
+labels: [enhancement]
+assignees: ""
 ---
 
 ## Description

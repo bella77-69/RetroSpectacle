@@ -1,10 +1,9 @@
 ---
-name: Task
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
-
+name: Task 📝
+about: Create a new task for RetroSpectacle
+title: "[Task] 📝 "
+labels: todo
+assignees: ""
 ---
 
 ## Description
