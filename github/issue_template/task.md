@@ -1,15 +1,3 @@
----
-name: 📋 Task
-about: A specific, defined piece of work to be completed.
-title: "[TASK] "
-labels: task
-assignees: ""
----
-
-## User Story (Optional)
-
-As a [type of user], I want [some goal] so that [some reason].
-
 ## Description
 
 A clear and concise description of what the task is. What needs to be done?
@@ -20,9 +8,9 @@ A clear and concise description of what the task is. What needs to be done?
 - [ ] Criteria 2: e.g., "The button should turn blue on hover."
 - [ ] Criteria 3: e.g., "No console errors should appear."
 
-## Technical Notes (Optional)
+## Notes (Optional)
 
-Any technical details, architectural decisions, or links to relevant documentation.
+Any details, architectural decisions, or links to relevant documentation.
 
 ## Dependencies (Optional)
 

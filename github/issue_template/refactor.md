@@ -1,11 +1,3 @@
----
-name: ♻️ Refactor
-about: Propose a code refactor to improve performance, readability, or structure.
-title: "[REFACTOR] "
-labels: refactor
-assignees: ""
----
-
 ## What code should be refactored?
 
 File path, module, or function name.
