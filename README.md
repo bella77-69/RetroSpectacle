@@ -17,9 +17,7 @@ RetroSpectacle is a web app for dev teams to run sprint retrospectives, capture 
 
 ## Screenshot / Mockup
 
-![RetroSpectacle Mockup](https://via.placeholder.com/800x400.png?text=RetroSpectacle+Board+Mockup)
 
-*Example layout of columns and issues on the RetroSpectacle board.*
 
 ---
 
