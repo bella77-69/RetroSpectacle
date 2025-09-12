@@ -39,8 +39,9 @@ export default function BoardPage() {
   }
 
   return (
-    <div className="board-page">
-      <h2>RetroSpectacle Board</h2>
+    <div className="bg-gradient-to-br from-grey-50 to-grey-100 min-h-screen p-4">
+      {/* <h2>RetroSpectacle Board</h2> */}
+      <h1 className="text-4xl font-bold text-blue-800">RetroSpectacle Board</h1>
       <div className="board-columns">
         {Object.entries(cards).map(([colKey, colCards]) => (
           <div key={colKey} className="board-column">

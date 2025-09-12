@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kanban-column {
+    @apply bg-gradient-to-b from-white to-gray-50 rounded-lg shadow-lg p-4 min-h-[500px] border border-gray-200;
+  }
+  
+  .kanban-card {
+    @apply bg-gradient-to-br from-white to-gray-50 rounded-lg shadow p-4 mb-3 border border-gray-200 hover:shadow-lg hover:bg-gray-50 transition-all duration-200 cursor-grab;
+  }
+  
+  .kanban-column-header {
+    @apply text-lg font-semibold mb-4 pb-2 border-b border-gray-200 text-gray-800;
+  }
+  
+  .kanban-add-card {
+    @apply w-full py-2 px-3 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2;
+  }
+  
+  /* Status indicators */
+  .status-badge {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .status-todo {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  .status-progress {
+    @apply bg-amber-100 text-amber-800;
+  }
+  
+  .status-review {
+    @apply bg-violet-100 text-violet-800;
+  }
+  
+  .status-done {
+    @apply bg-emerald-100 text-emerald-800;
+  }
+  
+  /* Priority indicators */
+  .priority-high {
+    @apply bg-red-50 text-red-800 border-l-4 border-red-500;
+  }
+  
+  .priority-medium {
+    @apply bg-yellow-50 text-yellow-800 border-l-4 border-yellow-500;
+  }
+  
+  .priority-low {
+    @apply bg-green-50 text-green-800 border-l-4 border-green-500;
+  }
+}
+
+/* Custom scrollbar for Kanban columns */
+.kanban-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+.kanban-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.kanban-scroll::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.kanban-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.kanban-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3; /* Tailwind gray.400 hex */
+}
+
+/* Animation classes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .kanban-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .kanban-column {
+    min-height: 300px;
+  }
+}
