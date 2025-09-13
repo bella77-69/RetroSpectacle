@@ -1,88 +1,47 @@
-name: Link GitHub Project Items
+name: Add PR Link to Issue
 
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened, reopened]
 
 jobs:
-  comment-with-ticket-link:
+  link-to-issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for project item ID
-        id: check-ticket
+      - name: Check if issue is referenced
+        id: check-issue
         env:
-          PR_TITLE: ${{ github.event.pull_request.title }}
           PR_BODY: ${{ github.event.pull_request.body }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          # Combine title and body to search for a project item pattern
-          TEXT="$PR_TITLE $PR_BODY"
-
-          # Look for numeric project item IDs (like 127695201)
-          # This regex looks for 8-10 digit numbers that could be item IDs
-          if [[ $TEXT =~ ([0-9]{8,10}) ]]; then
-            TICKET_ID="${BASH_REMATCH[1]}"
-            echo "TICKET_ID=$TICKET_ID" >> $GITHUB_ENV
-            
-            # URL for YOUR GitHub Project item - UPDATED WITH CORRECT FORMAT
-            TICKET_URL="https://github.com/users/bella77-69/projects/6/views/1?pane=issue&itemId=$TICKET_ID"
-            echo "TICKET_URL=$TICKET_URL" >> $GITHUB_ENV
+          # Look for issue references like #123
+          if [[ $PR_BODY =~ \#([0-9]+) ]]; then
+            ISSUE_NUMBER="${BASH_REMATCH[1]}"
+            echo "ISSUE_NUMBER=$ISSUE_NUMBER" >> $GITHUB_ENV
+            echo "PR_URL=$PR_URL" >> $GITHUB_ENV
+            echo "PR_TITLE=$PR_TITLE" >> $GITHUB_ENV
           else
-            echo "No project item ID found."
+            echo "No issue referenced in PR description"
+            exit 0
           fi
 
-      - name: Find existing comment
-        if: env.TICKET_ID
-        id: find-comment
+      - name: Add comment to linked issue
+        if: env.ISSUE_NUMBER
         uses: actions/github-script@v7
-        env:
-          TICKET_ID: ${{ env.TICKET_ID }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { data: comments } = await github.rest.issues.listComments({
+            const issueNumber = process.env.ISSUE_NUMBER;
+            const prUrl = process.env.PR_URL;
+            const prTitle = process.env.PR_TITLE;
+
+            // Add a comment to the issue
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
+              issue_number: issueNumber,
+              body: `🔗 **Linked Pull Request**: [${prTitle}](${prUrl})\n\nThis pull request references this issue.`
             });
 
-            const botComment = comments.find(comment => 
-              comment.user.login === 'github-actions[bot]' && 
-              comment.body.includes(`Linked to project item: **${process.env.TICKET_ID}**`)
-            );
-
-            if (botComment) {
-              console.log(`Found existing comment: ${botComment.id}`);
-              return botComment.id;
-            } else {
-              return 0;
-            }
-
-      - name: Create or Update Comment with Link
-        if: env.TICKET_ID && steps.find-comment.outputs.result != 0
-        uses: actions/github-script@v7
-        env:
-          TICKET_ID: ${{ env.TICKET_ID }}
-          TICKET_URL: ${{ env.TICKET_URL }}
-          EXISTING_COMMENT_ID: ${{ steps.find-comment.outputs.result }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const commentBody = `🔗 Linked to project item: **[${process.env.TICKET_ID}](${process.env.TICKET_URL})**`;
-
-            if (process.env.EXISTING_COMMENT_ID != 0) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: process.env.EXISTING_COMMENT_ID,
-                body: commentBody
-              });
-              console.log('Updated existing comment.');
-            } else {
-              await github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: commentBody
-              });
-              console.log('Created new comment.');
-            }
+            console.log(`Added PR link to issue #${issueNumber}`);
