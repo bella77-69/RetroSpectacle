@@ -1,4 +1,4 @@
-🤖 Resolves <!-- issue # -->
+🤖 Fixes <!-- issue # -->
 
 ## 📌 Description
 

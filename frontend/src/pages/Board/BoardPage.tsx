@@ -39,9 +39,8 @@ export default function BoardPage() {
 
   return (
     <section className="max-w-7xl mx-auto p-6">
-      <div className="min-h-screen bg-background-secondary dark:bg-background-primary p-6 rounded-xl shadow-kanban">
-        {/* Columns */}
-        <div className="grid xs:grid-cols-1 sm:grid-cols-3 gap-6 mb-6 ">
+      <div className="min-h-screen bg-secondary dark:bg-primary p-6 rounded-xl shadow-kanban">
+        <div className="grid xs:grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
           {Object.entries(cards).map(([colKey, colCards]) => (
             <div
               key={colKey}

@@ -28,7 +28,7 @@ module.exports = {
           DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
           hover: 'rgb(var(--color-accent-hover) / <alpha-value>)',
         },
-        success: {
+        success: { 
         DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
         hover: 'rgb(var(--color-success-hover) / <alpha-value>)',
         },
