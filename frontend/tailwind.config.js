@@ -7,41 +7,55 @@ module.exports = {
       screens: {
         xs: '475px',
         sm: '640px',
-        //md: '768px',
+        md: '768px',
         lg: '1024px',
         xl: '1280px',
         '2xl': '1536px',
       },
       colors: {
-        // Light mode
-        customWhite: '#FFFFFF',
-        customWhiteDarker: '#A8A6A1',
-        customNav: '#3A5A5A',
-        customNavDark: '#7A8E8E',
-        textWhite: '#F8F6F3',
-        active: '#1D3131',
-        hover: '#4A5E5E',
-        customBlack: '#121212',
-
-        // Dark mode
-        darkBackground: '#0A0D12',
-        darkNav: '#131920',
-        darkText: '#F5F5F5',
-        cardLight: '#7A8E8E',
-
-        // Status colors
-        success: { DEFAULT: '#22c55e' },
-        warning: { DEFAULT: '#f59e0b' },
-        error: { DEFAULT: '#ef4444' },
-
-        // Kanban columns
-        column: {
-          todo: '#2563eb',
-          progress: '#d97706',
-          review: '#7c3aed',
-          done: '#059669',
+        text: {
+          primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+          white: 'rgb(var(--color-text-white) / <alpha-value>)',
+          dark: 'rgb(var(--color-dark-text) / <alpha-value>)',
         },
-        // Additional colors
+        background: {
+          primary: 'rgb(var(--color-bg-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+          dark: 'rgb(var(--color-dark-background) / <alpha-value>)',
+        },
+        accent: {
+          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+          hover: 'rgb(var(--color-accent-hover) / <alpha-value>)',
+        },
+        success: { 
+         DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
+        hover: 'rgb(var(--color-success-hover) / <alpha-value>)',
+        },
+        card: {
+          bg: 'rgb(var(--color-card-bg) / <alpha-value>)',
+          border: 'rgb(var(--color-card-border) / <alpha-value>)',
+        },
+        custom: {
+          white: 'rgb(var(--color-custom-white) / <alpha-value>)',
+          whiteDarker: 'rgb(var(--color-custom-white-darker) / <alpha-value>)',
+          nav: 'rgb(var(--color-custom-nav) / <alpha-value>)',
+          navDark: 'rgb(var(--color-custom-nav-dark) / <alpha-value>)',
+          black: 'rgb(var(--color-custom-black) / <alpha-value>)',
+          active: 'rgb(var(--color-active) / <alpha-value>)',
+          hover: 'rgb(var(--color-hover) / <alpha-value>)',
+        },
+        status: {
+          hover: 'rgb(var(--color-success-hover) / <alpha-value>)',
+          warning: 'rgb(var(--color-warning) / <alpha-value>)',
+          error: 'rgb(var(--color-error) / <alpha-value>)',
+        },
+        column: {
+          todo: 'rgb(var(--color-column-todo) / <alpha-value>)',
+          progress: 'rgb(var(--color-column-progress) / <alpha-value>)',
+          review: 'rgb(var(--color-column-review) / <alpha-value>)',
+          done: 'rgb(var(--color-column-done) / <alpha-value>)',
+        },
         primary: {
           100: '#E0F2FE',
           500: '#3B82F6',
