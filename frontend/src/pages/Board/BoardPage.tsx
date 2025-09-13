@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../styles/Board/BoardPage.css";
 
 interface Card {
   id: number;
