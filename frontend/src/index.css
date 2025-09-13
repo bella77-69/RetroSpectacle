@@ -130,11 +130,10 @@
   .btn-success:hover {
     background-color: rgb(var(--color-success-hover)) !important;
   }
- button {
+  button {
     background-color: rgb(var(--color-success));
     color: rgb(var(--color-button-text));
   }
-
   button:hover {
     background-color: rgb(var(--color-success-hover));
   }

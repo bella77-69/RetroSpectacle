@@ -29,7 +29,7 @@ module.exports = {
           hover: 'rgb(var(--color-accent-hover) / <alpha-value>)',
         },
         success: { 
-        DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
+         DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
         hover: 'rgb(var(--color-success-hover) / <alpha-value>)',
         },
         card: {
@@ -69,11 +69,6 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-      },
-      button: {
-        primary: 'bg-accent text-button-text hover:bg-accent-hover',
-        success: 'bg-success text-button-text hover:bg-success-hover',
-        accent: 'bg-accent text-button-text hover:bg-accent-hover',
       },
       backgroundImage: {
         'kanban-light': 'linear-gradient(to bottom, #FFFFFF, #f3f4f6)',
