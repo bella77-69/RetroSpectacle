@@ -3,71 +3,209 @@
 
 @layer base {
   :root {
-    /* Light mode variables (RGB values) */
-    --color-text-primary: 18 18 18;  /* #121212 */
-    --color-text-secondary: 74 99 99;  /* #4A6363 */
-    --color-bg-primary: 255 252 247;  /* #FFFCF7 */
-    --color-bg-secondary: 245 243 240;  /* #F5F3F0 */
-    --color-accent: 74 99 99;  /* #4A6363 */
-    --color-accent-hover: 45 65 65;  /* #2D4141 */
+    /* Light mode */
+    --color-text-primary: 15, 23, 42;
+    --color-text-secondary: 71, 85, 105;
+    --color-bg-primary: 255, 255, 255;
+    --color-bg-secondary: 241, 244, 249;
+    --color-accent: 37, 99, 235;
+    --color-accent-hover: 29, 78, 216;
+    --color-success: 34, 197, 94;
+    --color-success-hover: 22, 163, 74;
+    --color-card-bg: 255, 255, 255;
+    --color-card-border: 226, 232, 240;
+    --color-button-text: 255, 255, 255;
+    
+    /* Additional colors from your config */
+    --color-custom-white: 255, 255, 255;
+    --color-custom-white-darker: 168, 166, 161;
+    --color-custom-nav: 58, 90, 90;
+    --color-custom-nav-dark: 122, 142, 142;
+    --color-text-white: 248, 246, 243;
+    --color-active: 29, 49, 49;
+    --color-hover: 74, 94, 94;
+    --color-custom-black: 18, 18, 18;
+    
+    /* Status colors */
+    --color-warning: 245, 158, 11;
+    --color-error: 239, 68, 68;
+    
+    /* Kanban columns */
+    --color-column-todo: 37, 99, 235;
+    --color-column-progress: 217, 119, 6;
+    --color-column-review: 124, 58, 237;
+    --color-column-done: 5, 150, 105;
   }
 
   :root[class~="dark"] {
-    /* Dark mode variables (RGB values) */
-    --color-text-primary: 240 240 240;  /* #F0F0F0 */
-    --color-text-secondary: 138 158 158;  /* #8A9E9E */
-    --color-bg-primary: 10 13 18;  /* #0A0D12 */
-    --color-bg-secondary: 23 34 40;  /* #172228 */
-    --color-accent: 138 158 158;  /* #8A9E9E */
-    --color-accent-hover: 87 107 107;  /* #576B6B */
+    /* Dark mode */
+    --color-text-primary: 248, 250, 252;
+    --color-text-secondary: 203, 213, 225;
+    --color-bg-primary: 30, 41, 59;
+    --color-bg-secondary: 51, 65, 85;
+    --color-accent: 59, 130, 246;
+    --color-accent-hover: 37, 99, 235;
+    --color-success: 34, 197, 94;
+    --color-success-hover: 22, 163, 74;
+    --color-card-bg: 51, 65, 85;
+    --color-card-border: 71, 85, 105;
+    --color-button-text: 255, 255, 255;
+    
+    /* Dark mode variants */
+    --color-dark-background: 10, 13, 18;
+    --color-dark-nav: 19, 25, 32;
+    --color-dark-text: 245, 245, 245;
+    --color-card-light: 122, 142, 142;
+
+  
+    --color-custom-white: 18, 18, 18;
+    --color-custom-white-darker: 255, 255, 255;
+    --color-custom-nav: 122, 142, 142;
+    --color-custom-nav-dark: 58, 90, 90;
+    --color-text-white: 18, 18, 18;
+    --color-active: 74, 94, 94;
+    --color-hover: 29, 49, 49;
+    --color-custom-black: 255, 255, 255;
+
+    /* Status colors */
+    --color-warning: 245, 158, 11;
+    --color-error: 239, 68, 68;
+
+    /* Kanban columns */
+    --color-column-todo: 59, 130, 246;
+    --color-column-progress: 217, 119, 6;
+    --color-column-review: 124, 58, 237;
+    --color-column-done: 5, 150, 105;
+
   }
 
-  html, body {
-    height: 100%;
+  html, body { 
+    height: 100%; 
   }
 
   body {
     background-color: rgb(var(--color-bg-primary));
     color: rgb(var(--color-text-primary));
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  select {
+    background-color: rgb(var(--color-card-bg));
+    color: rgb(var(--color-text-primary));
+    border-color: rgb(var(--color-card-border));
+  }
+  select option {
+    background-color: rgb(var(--color-card-bg));
+    color: rgb(var(--color-text-primary));
+  }
+  .theme-transition * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  input {
+    background-color: rgb(var(--color-card-bg));
+    color: rgb(var(--color-text-primary));
+    border-color: rgb(var(--color-card-border));
+  }
+  input::placeholder {
+    color: rgb(var(--color-text-secondary));
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: rgb(var(--color-accent));
+    box-shadow: 0 0 0 3px rgba(var(--color-accent), 0.3);
+  }
+  a {
+    color: rgb(var(--color-accent));
+    text-decoration: none;
+  }
+  a:hover {
+    color: rgb(var(--color-accent-hover));
+    text-decoration: underline;
+  }
+  .btn-success {
+    background-color: rgb(var(--color-success)) !important;
+    color: rgb(var(--color-button-text)) !important;
+  }     
+  .btn-success:hover {
+    background-color: rgb(var(--color-success-hover)) !important;
+  }
+ button {
+    background-color: rgb(var(--color-success));
+    color: rgb(var(--color-button-text));
+  }
+
+  button:hover {
+    background-color: rgb(var(--color-success-hover));
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(var(--color-text-primary));
+    margin: 0;
   }
 }
 
 @layer utilities {
-  .text-transparent-primary {
-    color: rgb(var(--color-text-primary) / var(--tw-text-opacity, 1));
+  .bg-card {
+    background-color: rgb(var(--color-card-bg));
   }
-  
-  .text-transparent-secondary {
-    color: rgb(var(--color-text-secondary) / var(--tw-text-opacity, 1));
+  .border-card {
+    border-color: rgb(var(--color-card-border));
   }
-  
-  .bg-custom-primary {
-    background-color: rgb(var(--color-bg-primary));
+  .text-primary { 
+    color: rgb(var(--color-text-primary)); 
   }
-  
-  .bg-custom-secondary {
-    background-color: rgb(var(--color-bg-secondary));
+  .text-secondary { 
+    color: rgb(var(--color-text-secondary)); 
   }
-  
-  .text-custom-primary {
-    color: rgb(var(--color-text-primary));
+  .bg-accent { 
+    background-color: rgb(var(--color-accent)); 
   }
-  
-  .text-custom-secondary {
-    color: rgb(var(--color-text-secondary));
+  .bg-accent:hover { 
+    background-color: rgb(var(--color-accent-hover)); 
   }
-  
-  .border-custom-accent {
-    border-color: rgb(var(--color-accent));
+  .text-accent { 
+    color: rgb(var(--color-accent)); 
   }
-  
-  .bg-custom-accent {
-    background-color: rgb(var(--color-accent));
+  .text-accent:hover { 
+    color: rgb(var(--color-accent-hover)); 
   }
-  
-  .bg-custom-accent:hover {
-    background-color: rgb(var(--color-accent-hover));
+  .shadow-card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  .shadow-cardHover:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  .bg-custom-white {
+    background-color: rgb(var(--color-custom-white));
+  }
+  .text-custom-white {
+    color: rgb(var(--color-custom-white));
+  }
+  .bg-custom-nav {
+    background-color: rgb(var(--color-custom-nav));
+  }
+  .bg-dark-nav {
+    background-color: rgb(var(--color-dark-nav));
+  }
+  .text-dark-text {
+    color: rgb(var(--color-dark-text));
+  }
+  .bg-success {
+    background-color: rgb(var(--color-success));
+  }
+  .hover\:bg-success:hover {
+    background-color: rgb(var(--color-success-hover));
+  }
+  .text-success {
+    color: rgb(var(--color-success));
+  }
+  .bg-warning {
+    background-color: rgb(var(--color-warning));
+  }
+  .bg-error {
+    background-color: rgb(var(--color-error));
   }
 }
