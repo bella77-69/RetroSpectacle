@@ -1,8 +1,8 @@
+🤖 Resolves <!-- issue # -->
+
 ## 📌 Description
 
 <!-- Provide a summary of the changes and link the related issue -->
-
-Fixes #<!-- issue number -->
 
 ---
 
