@@ -42,6 +42,11 @@ module.exports = {
           done: '#059669',
         },
         // Additional colors
+        primary: {
+          100: '#E0F2FE',
+          500: '#3B82F6',
+          700: '#1D4ED8',
+        },
         grey: {
           50: '#f9fafb',
           100: '#f3f4f6', 
