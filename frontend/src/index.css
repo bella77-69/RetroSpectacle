@@ -1,110 +1,73 @@
-@tailwind base;
-@tailwind components;
+@import "tailwindcss/preflight";
 @tailwind utilities;
 
-@layer components {
-  .kanban-column {
-    @apply bg-gradient-to-b from-white to-gray-50 rounded-lg shadow-lg p-4 min-h-[500px] border border-gray-200;
+@layer base {
+  :root {
+    /* Light mode variables (RGB values) */
+    --color-text-primary: 18 18 18;  /* #121212 */
+    --color-text-secondary: 74 99 99;  /* #4A6363 */
+    --color-bg-primary: 255 252 247;  /* #FFFCF7 */
+    --color-bg-secondary: 245 243 240;  /* #F5F3F0 */
+    --color-accent: 74 99 99;  /* #4A6363 */
+    --color-accent-hover: 45 65 65;  /* #2D4141 */
   }
-  
-  .kanban-card {
-    @apply bg-gradient-to-br from-white to-gray-50 rounded-lg shadow p-4 mb-3 border border-gray-200 hover:shadow-lg hover:bg-gray-50 transition-all duration-200 cursor-grab;
+
+  :root[class~="dark"] {
+    /* Dark mode variables (RGB values) */
+    --color-text-primary: 240 240 240;  /* #F0F0F0 */
+    --color-text-secondary: 138 158 158;  /* #8A9E9E */
+    --color-bg-primary: 10 13 18;  /* #0A0D12 */
+    --color-bg-secondary: 23 34 40;  /* #172228 */
+    --color-accent: 138 158 158;  /* #8A9E9E */
+    --color-accent-hover: 87 107 107;  /* #576B6B */
   }
-  
-  .kanban-column-header {
-    @apply text-lg font-semibold mb-4 pb-2 border-b border-gray-200 text-gray-800;
+
+  html, body {
+    height: 100%;
   }
-  
-  .kanban-add-card {
-    @apply w-full py-2 px-3 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2;
-  }
-  
-  /* Status indicators */
-  .status-badge {
-    @apply px-2 py-1 rounded-full text-xs font-medium;
-  }
-  
-  .status-todo {
-    @apply bg-blue-100 text-blue-800;
-  }
-  
-  .status-progress {
-    @apply bg-amber-100 text-amber-800;
-  }
-  
-  .status-review {
-    @apply bg-violet-100 text-violet-800;
-  }
-  
-  .status-done {
-    @apply bg-emerald-100 text-emerald-800;
-  }
-  
-  /* Priority indicators */
-  .priority-high {
-    @apply bg-red-50 text-red-800 border-l-4 border-red-500;
-  }
-  
-  .priority-medium {
-    @apply bg-yellow-50 text-yellow-800 border-l-4 border-yellow-500;
-  }
-  
-  .priority-low {
-    @apply bg-green-50 text-green-800 border-l-4 border-green-500;
+
+  body {
+    background-color: rgb(var(--color-bg-primary));
+    color: rgb(var(--color-text-primary));
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
-/* Custom scrollbar for Kanban columns */
-.kanban-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: #d1d5db #f3f4f6;
-}
-
-.kanban-scroll::-webkit-scrollbar {
-  width: 6px;
-}
-
-.kanban-scroll::-webkit-scrollbar-track {
-  background: #f3f4f6;
-  border-radius: 3px;
-}
-
-.kanban-scroll::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
-}
-
-.kanban-scroll::-webkit-scrollbar-thumb:hover {
-  background: #a3a3a3; /* Tailwind gray.400 hex */
-}
-
-/* Animation classes */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { transform: translateY(-10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .kanban-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+@layer utilities {
+  .text-transparent-primary {
+    color: rgb(var(--color-text-primary) / var(--tw-text-opacity, 1));
   }
   
-  .kanban-column {
-    min-height: 300px;
+  .text-transparent-secondary {
+    color: rgb(var(--color-text-secondary) / var(--tw-text-opacity, 1));
+  }
+  
+  .bg-custom-primary {
+    background-color: rgb(var(--color-bg-primary));
+  }
+  
+  .bg-custom-secondary {
+    background-color: rgb(var(--color-bg-secondary));
+  }
+  
+  .text-custom-primary {
+    color: rgb(var(--color-text-primary));
+  }
+  
+  .text-custom-secondary {
+    color: rgb(var(--color-text-secondary));
+  }
+  
+  .border-custom-accent {
+    border-color: rgb(var(--color-accent));
+  }
+  
+  .bg-custom-accent {
+    background-color: rgb(var(--color-accent));
+  }
+  
+  .bg-custom-accent:hover {
+    background-color: rgb(var(--color-accent-hover));
   }
 }

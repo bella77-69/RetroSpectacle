@@ -39,9 +39,8 @@ export default function BoardPage() {
   }
 
   return (
+    <section className="max-w-7xl mx-auto p-6 sm:px-6 lg:px-8 ">
     <div className="bg-gradient-to-br from-grey-50 to-grey-100 min-h-screen p-4">
-      {/* <h2>RetroSpectacle Board</h2> */}
-      <h1 className="text-4xl font-bold text-blue-800">RetroSpectacle Board</h1>
       <div className="board-columns">
         {Object.entries(cards).map(([colKey, colCards]) => (
           <div key={colKey} className="board-column">
@@ -80,5 +79,6 @@ export default function BoardPage() {
         <button type="submit">Add Card</button>
       </form>
     </div>
+    </section>
   );
 }
