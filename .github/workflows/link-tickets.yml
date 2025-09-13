@@ -1,0 +1,88 @@
+name: Link GitHub Project Items
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  comment-with-ticket-link:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for project item ID
+        id: check-ticket
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # Combine title and body to search for a project item pattern
+          TEXT="$PR_TITLE $PR_BODY"
+
+          # Look for numeric project item IDs (like 127695201)
+          # This regex looks for 8-10 digit numbers that could be item IDs
+          if [[ $TEXT =~ ([0-9]{8,10}) ]]; then
+            TICKET_ID="${BASH_REMATCH[1]}"
+            echo "TICKET_ID=$TICKET_ID" >> $GITHUB_ENV
+            
+            # URL for YOUR GitHub Project item - UPDATED WITH CORRECT FORMAT
+            TICKET_URL="https://github.com/users/bella77-69/projects/6/views/1?pane=issue&itemId=$TICKET_ID"
+            echo "TICKET_URL=$TICKET_URL" >> $GITHUB_ENV
+          else
+            echo "No project item ID found."
+          fi
+
+      - name: Find existing comment
+        if: env.TICKET_ID
+        id: find-comment
+        uses: actions/github-script@v7
+        env:
+          TICKET_ID: ${{ env.TICKET_ID }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.login === 'github-actions[bot]' && 
+              comment.body.includes(`Linked to project item: **${process.env.TICKET_ID}**`)
+            );
+
+            if (botComment) {
+              console.log(`Found existing comment: ${botComment.id}`);
+              return botComment.id;
+            } else {
+              return 0;
+            }
+
+      - name: Create or Update Comment with Link
+        if: env.TICKET_ID && steps.find-comment.outputs.result != 0
+        uses: actions/github-script@v7
+        env:
+          TICKET_ID: ${{ env.TICKET_ID }}
+          TICKET_URL: ${{ env.TICKET_URL }}
+          EXISTING_COMMENT_ID: ${{ steps.find-comment.outputs.result }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commentBody = `🔗 Linked to project item: **[${process.env.TICKET_ID}](${process.env.TICKET_URL})**`;
+
+            if (process.env.EXISTING_COMMENT_ID != 0) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: process.env.EXISTING_COMMENT_ID,
+                body: commentBody
+              });
+              console.log('Updated existing comment.');
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              });
+              console.log('Created new comment.');
+            }
