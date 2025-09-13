@@ -122,7 +122,7 @@ export default function Navbar() {
 
       {/* mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-customNav dark:bg-darkNav border-t border-customWhiteDarker dark:border-cardLight">
+        <div className="bg-customNav dark:bg-darkNav border-t border-customWhiteDarker dark:border-cardLight">
           {navLinks.map((link) => (
             <a
               key={link.name}

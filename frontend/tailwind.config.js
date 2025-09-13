@@ -41,6 +41,11 @@ module.exports = {
           review: '#7c3aed',
           done: '#059669',
         },
+        // Additional colors
+        grey: {
+          50: '#f9fafb',
+          100: '#f3f4f6', 
+        },
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
